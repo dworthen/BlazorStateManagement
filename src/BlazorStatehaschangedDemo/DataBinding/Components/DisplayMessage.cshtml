@@ -1,0 +1,7 @@
+﻿
+<div>Message Value: @Message</div>
+
+@functions {
+    [Parameter] string Message { get; set; }
+    [Parameter] Action<string> MessageChanged { get; set; }
+}

@@ -1,0 +1,47 @@
+﻿@page "/DataBinding"
+@using BlazorStatehaschangedDemo.DataBinding.Models
+
+<h2>Part 1 - Data Binding</h2>
+
+<div class="boxed">
+    <h3>Displaying and updating a string accross components</h3>
+    <p>
+        Each component recieves the same string property. Notice that updates to the message in the
+        second component are not reflected in the first component.
+    </p>
+    <div class="boxed">
+        <h4>DisplayMessage Component</h4>
+        <DisplayMessage bind-Message="@Message"></DisplayMessage>
+    </div>
+    <div class="boxed">
+        <h4>UpdateMessage Component</h4>
+        <UpdateMessage bind-Message="@Message"></UpdateMessage>
+    </div>
+</div>
+
+<div class="boxed">
+    <h3>Displaying and updating an object accross components</h3>
+    <p>
+        Each component recieves the same Person object property. Updates to the object in the second component are not reflected
+        in the first component.
+    </p>
+    <div class="boxed">
+        <h4>DisplayPerson Component</h4>
+        <DisplayPerson person="@person"></DisplayPerson>
+    </div>
+    <div class="boxed">
+        <h4>UpdatePerson Componet</h4>
+        <UpdatePerson person="@person"></UpdatePerson>
+    </div>
+</div>
+
+<p>
+    In summary, Blazor supports component-based data-binding, a process for keeping the ViewModel and view in sync. 
+    Data-binding is component based and will not work across components. In future articles, I will examine methods 
+    for sharing data across components and ensuring components use and reflect the most up-to-date data.
+</p>
+
+@functions {
+private string Message { get; set; } = "Hello World";
+private Person person { get; set; } = new Person { Name = "Derek" };
+}

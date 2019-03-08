@@ -1,0 +1,18 @@
+﻿
+
+<div>Person's Name: @person.Name</div>
+
+<div>
+    <input type="text" value="@person.Name" onchange="@OnChange" />
+</div>
+
+
+@functions {
+    [Parameter] Person person { get; set; }
+
+    private void OnChange(UIChangeEventArgs e)
+    {
+        person.Name = (string)e.Value;
+        StateHasChanged();
+    }
+}
