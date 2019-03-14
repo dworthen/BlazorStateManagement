@@ -1,0 +1,36 @@
+﻿@page "/EventDelegation"
+@using BlazorStatehaschangedDemo.EventDelegation.Models
+
+<h2>Part 2 - Event Delegation</h2>
+
+<div class="boxed">
+    <h3>Displaying and updating an object accross components</h3>
+    <p>
+        Each component recieves the same Person object property. The parent component, this page, is
+        responsible for updating the object. This is acheived by passing a function to child components
+        to call when changes occur, bubbling events back to this page to handle updates.
+    </p>
+    <div class="boxed">
+        <h4>DisplayPerson Component</h4>
+        <DisplayPerson2 person="@person"></DisplayPerson2>
+    </div>
+    <div class="boxed">
+        <h4>UpdatePerson Componet</h4>
+        <UpdatePerson2 person="@person" CustomOnChange="@HandleChange"></UpdatePerson2>
+    </div>
+</div>
+
+<p>
+
+</p>
+
+@functions {
+    private string Message { get; set; } = "Hello World";
+    private Person person { get; set; } = new Person { Name = "Derek" };
+
+    private void HandleChange (UIChangeEventArgs e)
+    {
+        person.Name = e.Value.ToString();
+        StateHasChanged();
+    }
+}

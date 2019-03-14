@@ -1,0 +1,18 @@
+﻿@using BlazorStatehaschangedDemo.EventDelegation.Models
+
+<div>Person's Name: @person.Name</div>
+
+<div>
+    <input type="text" value="@person.Name" onchange="@OnChange" />
+</div>
+
+
+@functions {
+    [Parameter] protected Person person { get; set; }
+    [Parameter] protected Action<UIChangeEventArgs> CustomOnChange { get; set; }
+
+    private void OnChange(UIChangeEventArgs e)
+    {
+        CustomOnChange?.Invoke(e);
+    }
+}
