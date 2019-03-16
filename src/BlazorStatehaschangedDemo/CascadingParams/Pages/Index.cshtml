@@ -1,0 +1,30 @@
+﻿@page "/cascadingparams"
+@using BlazorStatehaschangedDemo.CascadingParams.Models
+
+<h2>Part 3 - Cascading Parameters</h2>
+
+<div class="boxed">
+    <h3>Displaying and updating an object accross components</h3>
+    <p>
+        Data is shared across components using cascading parameters. 
+    </p>
+    <CascadingValue Value="@person">
+        <CascadingValue Value="@HandleChange" Name="HandleChange" T="Action<UIChangeEventArgs>">
+            <MiddleComponent></MiddleComponent>
+        </CascadingValue>
+    </CascadingValue>
+</div>
+
+<p>
+
+</p>
+
+@functions {
+    protected Person person { get; set; } = new Person { Name = "Derek" };
+
+    protected void HandleChange (UIChangeEventArgs e)
+    {
+        person.Name = e.Value.ToString();
+        StateHasChanged();
+    }
+}

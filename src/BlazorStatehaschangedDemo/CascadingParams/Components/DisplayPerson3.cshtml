@@ -1,0 +1,9 @@
+﻿@using BlazorStatehaschangedDemo.CascadingParams.Models
+
+<div>Person's Name: @person.Name</div>
+
+@functions {
+    [CascadingParameter] protected Person person { get; set; }
+
+
+}

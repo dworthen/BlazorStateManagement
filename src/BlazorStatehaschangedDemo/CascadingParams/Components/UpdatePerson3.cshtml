@@ -1,0 +1,18 @@
+﻿@using BlazorStatehaschangedDemo.CascadingParams.Models
+
+<div>Person's Name: @person.Name</div>
+
+<div>
+    <input type="text" value="@person.Name" onchange="@OnChangeHandler" />
+</div>
+
+
+@functions {
+    [CascadingParameter] protected Person person { get; set; }
+    [CascadingParameter(Name = "HandleChange")] protected Action<UIChangeEventArgs> CustomOnChange { get; set; }
+
+    private void OnChangeHandler(UIChangeEventArgs e)
+    {
+        CustomOnChange?.Invoke(e);
+    }
+}
